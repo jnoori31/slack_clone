@@ -1,0 +1,12 @@
+<div class="contrainer" style="width: 80%; margin: auto;">
+  <h1>#<%= @chatroom.name %></h1>
+  <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+    <% @chatroom.messages.each do |message| %>
+      <%= render 'messages/message', message: message %>
+    <% end %>
+  </div>
+  <!-- <form action"/chatrooms/1/messages" method="post"></form> -->
+  <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
+    <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
+  <% end %>
+</div>
